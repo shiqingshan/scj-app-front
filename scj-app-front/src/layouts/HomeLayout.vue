@@ -2,7 +2,7 @@
     <div>
         <el-container>
             <LayoutHeader/>
-            <el-main class="text-center h-prose"><router-view></router-view></el-main>
+            <el-main class="text-center h-prose" style="margin:0% 20% 0% 20%"><router-view></router-view></el-main>
             <el-footer class="text-center">
                 SCJ
             </el-footer>
