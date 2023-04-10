@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import { resolve } from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { ElementPlusResolver, NaiveUiResolver} from 'unplugin-vue-components/resolvers';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import UnoCSS from 'unocss/vite';
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
@@ -23,10 +23,10 @@ export default defineConfig({
       imports: [
         'vue',
       ],
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(),NaiveUiResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(),NaiveUiResolver()],
     })
   ],
   resolve: {
