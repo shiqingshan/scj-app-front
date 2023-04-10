@@ -17,16 +17,23 @@
       <el-menu-item index="4">上传简历</el-menu-item>
       <el-menu-item index="5">我要找工作</el-menu-item>
       <el-menu-item index="6">我要招聘</el-menu-item>
-      <li style="margin-top: 10px;"><el-button info round>注册/登录</el-button></li>
+      <li style="margin-top: 10px;">
+        <el-button info round @click="toLogin()">注册/登录</el-button>
+      </li>
     </el-menu>
     
   </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import {useRouter} from 'vue-router'
 
+const router = useRouter();
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
+}
+const toLogin = ()=>{
+  router.push('/login')
 }
 </script>
