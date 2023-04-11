@@ -53,7 +53,7 @@
 import { ref } from 'vue';
 import {useUserStore} from "@/store/user";
 import {useRegisterStore} from "@/store/register";
-import { ElMessage, type FormInstance } from 'element-plus'
+import {type FormInstance } from 'element-plus'
 
 const registerFormRef = ref<FormInstance>()
 
