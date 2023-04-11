@@ -51,8 +51,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {useUserStore} from "@/store/user";
-import {useRegisterStore} from "@/store/register";
+import {useUserStore} from "@/stores/user";
+import {useRegisterStore} from "@/stores/register";
 import {type FormInstance } from 'element-plus'
 
 const registerFormRef = ref<FormInstance>()

@@ -13,6 +13,19 @@ const routes:Array<RouteRecordRaw> =[{
     ],
 },
 {
+    path: '/admin',
+    name: 'admin',
+    redirect: 'admin/adminHome',
+    component: ()=> import("@/layouts/admin-layout/index.vue"),
+    children:[
+        {
+            path: 'adminHome',
+            name: 'adminHome',
+            component: ()=> import("@/views/home/index.vue")
+        }
+    ],
+},
+{
     path: '/login',
     name: 'login',
     component: ()=> import('@/views/login/Login.vue')

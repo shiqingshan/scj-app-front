@@ -37,14 +37,14 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { GlobalStore } from "@/stores";
-import { AuthStore } from "@/stores/modules/auth";
-import Main from "@/layouts/components/Main/index.vue";
-import ToolBarLeft from "@/layouts/components/Header/ToolBarLeft.vue";
-import ToolBarRight from "@/layouts/components/Header/ToolBarRight.vue";
-import SubMenu from "@/layouts/components/Menu/SubMenu.vue";
+import { useAuthStore } from "@/stores/modules/auth";
+import Main from "@/layouts/admin-layout/components/Main/index.vue";
+import ToolBarLeft from "@/layouts/admin-layout/components/Header/ToolBarLeft.vue";
+import ToolBarRight from "@/layouts/admin-layout/components/Header/ToolBarRight.vue";
+import SubMenu from "@/layouts/admin-layout/components/Menu/SubMenu.vue";
 
 const route = useRoute();
-const authStore = AuthStore();
+const authStore = useAuthStore();
 const globalStore = GlobalStore();
 const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path));
 const menuList = computed(() => authStore.showMenuListGet);

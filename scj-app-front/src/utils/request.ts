@@ -6,7 +6,7 @@ import errorCode from '@/utils/errorCode';
 import { tansParams, blobValidate } from '@/utils/common';
 import cache from '@/plugins/cache';
 import { saveAs } from 'file-saver';
-import { useUserStore } from '@/store/user';
+import { useUserStore } from '@/stores/user';
 
 // 创建一个错误
 let downloadLoadingInstance: ReturnType<typeof ElLoading.service>;

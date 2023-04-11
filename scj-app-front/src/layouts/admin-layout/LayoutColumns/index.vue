@@ -5,7 +5,7 @@
 			<div class="logo flx-center">
 				<img src="@/assets/images/logo.svg" alt="logo" />
 			</div>
-			<el-scrollbar>
+			<!-- <el-scrollbar>
 				<div class="split-list">
 					<div
 						class="split-item"
@@ -20,11 +20,11 @@
 						<span class="title">{{ item.meta.title }}</span>
 					</div>
 				</div>
-			</el-scrollbar>
+			</el-scrollbar> -->
 		</div>
-		<el-aside :class="{ 'not-aside': !subMenu.length }" :style="{ width: isCollapse ? '65px' : '210px' }">
+		<el-aside >
 			<div class="logo flx-center">
-				<span v-show="subMenu.length">{{ isCollapse ? "G" : "Geeker Admin" }}</span>
+				<!-- <span v-show="subMenu.length">{{ isCollapse ? "G" : "Geeker Admin" }}</span> -->
 			</div>
 			<el-scrollbar>
 				<el-menu
@@ -35,7 +35,8 @@
 					:unique-opened="true"
 					background-color="#ffffff"
 				>
-					<SubMenu :menuList="subMenu" />
+					<!-- <SubMenu :menuList="subMenu" /> -->
+
 				</el-menu>
 			</el-scrollbar>
 		</el-aside>
