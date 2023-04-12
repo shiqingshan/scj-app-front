@@ -22,5 +22,15 @@ export const appRouters: RouteRecordRaw[] = [
 			isAffix: true,
 			isKeepAlive: true
 		}
+	},
+	{
+		path: "/login",
+		name: "login",
+		component: () => import("@/views/app/login/Login.vue")
+	},
+	{
+		path: "/register",
+		name: "register",
+		component: () => import("@/views/app/register/Register.vue")
 	}
 ];

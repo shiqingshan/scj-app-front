@@ -24,7 +24,8 @@ export const useRegisterStore = defineStore('userRegister',{
         //注册
         register() {
             return new Promise((resolve, reject) => {
-                register(this.form)
+                
+                register(this.form.accountType)
                     .then((res: any) => {
                         resolve(1);
                     })

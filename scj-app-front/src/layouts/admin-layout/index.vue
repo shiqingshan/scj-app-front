@@ -4,13 +4,9 @@
 </template>
 
 <script setup lang="ts" name="layout">
-import { computed, type Component } from "vue";
 import { GlobalStore } from "@/stores";
 import LayoutClassic from "./LayoutClassic/index.vue";
 
-const LayoutComponents: { [key: string]: Component } = {
-	classic: LayoutClassic,
-};
 
 const globalStore = GlobalStore();
 </script>

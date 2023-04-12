@@ -33,6 +33,8 @@ import "virtual:svg-icons-register";
 // errorHandler
 import errorHandler from "@/utils/errorHandler";
 
+import "uno.css";
+
 const app = createApp(App);
 
 app.config.errorHandler = errorHandler;

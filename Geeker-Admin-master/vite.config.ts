@@ -10,9 +10,11 @@ import vueSetupExtend from "vite-plugin-vue-setup-extend-plus";
 import eslintPlugin from "vite-plugin-eslint";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import importToCDN from "vite-plugin-cdn-import";
-// import AutoImport from "unplugin-auto-import/vite";
-// import Components from "unplugin-vue-components/vite";
-// import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import UnoCSS from "unocss/vite";
+import { presetAttributify, presetIcons, presetUno } from "unocss";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver, NaiveUiResolver } from "unplugin-vue-components/resolvers";
 
 // @see: https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
@@ -43,7 +45,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			// 跨域代理配置
 			proxy: {
 				"/api": {
-					target: "https://mock.mengxuegu.com/mock/629d727e6163854a32e8307e", // easymock
+					target: "http://localhost:8080", // easymock
 					// target: "https://www.fastmock.site/mock/f81e8333c1a9276214bcdbc170d9e0a0", // fastmock
 					changeOrigin: true,
 					rewrite: path => path.replace(/^\/api/, "")
@@ -66,6 +68,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			}),
 			// * EsLint 报错信息显示在浏览器界面上
 			eslintPlugin(),
+			UnoCSS({
+				presets: [presetUno(), presetAttributify(), presetIcons()]
+			}),
 			// * vite 可以使用 jsx/tsx 语法
 			vueJsx(),
 			// * name 可以写在 script 标签上
@@ -97,14 +102,14 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 					// 	css: "https://unpkg.com/element-plus/dist/index.css"
 					// }
 				]
-			})
+			}),
 			// * demand import element
-			// AutoImport({
-			// 	resolvers: [ElementPlusResolver()]
-			// }),
-			// Components({
-			// 	resolvers: [ElementPlusResolver()]
-			// }),
+			AutoImport({
+				resolvers: [ElementPlusResolver(), NaiveUiResolver()]
+			}),
+			Components({
+				resolvers: [ElementPlusResolver(), NaiveUiResolver()]
+			})
 		],
 		// * 打包去除 console.log && debugger
 		esbuild: {

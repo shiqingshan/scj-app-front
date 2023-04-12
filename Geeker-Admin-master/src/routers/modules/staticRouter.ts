@@ -7,7 +7,7 @@ import { ADMIN_HOME_URL, LOGIN_URL } from "@/config/config";
 export const staticRouter: RouteRecordRaw[] = [
 	{
 		path: "/",
-		redirect: "appHome"
+		redirect: "/app/home"
 	},
 	{
 		path: "/admin",
