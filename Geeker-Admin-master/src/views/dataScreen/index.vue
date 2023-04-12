@@ -3,7 +3,7 @@
 		<div class="dataScreen" ref="dataScreenRef">
 			<div class="dataScreen-header">
 				<div class="header-lf">
-					<span class="header-screening" @click="router.push(HOME_URL)">首页</span>
+					<span class="header-screening" @click="router.push(ADMIN_HOME_URL)">首页</span>
 				</div>
 				<div class="header-ct">
 					<div class="header-ct-title">
@@ -118,7 +118,7 @@
 
 <script setup lang="ts">
 import { ref, Ref, onMounted, onBeforeUnmount } from "vue";
-import { HOME_URL } from "@/config/config";
+import { ADMIN_HOME_URL } from "@/config/config";
 import { randomNum } from "@/utils/util";
 import { useRouter } from "vue-router";
 import { useTime } from "@/hooks/useTime";

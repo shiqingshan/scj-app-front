@@ -6,13 +6,13 @@
 		<template #dropdown>
 			<el-dropdown-menu>
 				<el-dropdown-item @click="openDialog('infoRef')">
-					<el-icon><User /></el-icon>{{ $t("header.personalData") }}
+					<el-icon><User /></el-icon>用户信息
 				</el-dropdown-item>
 				<el-dropdown-item @click="openDialog('passwordRef')">
-					<el-icon><Edit /></el-icon>{{ $t("header.changePassword") }}
+					<el-icon><Edit /></el-icon>更改密码
 				</el-dropdown-item>
 				<el-dropdown-item @click="logout" divided>
-					<el-icon><SwitchButton /></el-icon>{{ $t("header.logout") }}
+					<el-icon><SwitchButton /></el-icon>登出
 				</el-dropdown-item>
 			</el-dropdown-menu>
 		</template>
@@ -26,8 +26,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { GlobalStore } from "@/stores";
-import { LOGIN_URL } from "@/config/config";
-import { logoutApi } from "@/api/modules/login";
 import { useRouter } from "vue-router";
 import { ElMessageBox, ElMessage } from "element-plus";
 import InfoDialog from "./InfoDialog.vue";
@@ -44,11 +42,11 @@ const logout = () => {
 		type: "warning"
 	}).then(async () => {
 		// 1.调用退出登录接口
-		await logoutApi();
+		//await logoutApi();
 		// 2.清除 Token
 		globalStore.setToken("");
 		// 3.重定向到登陆页
-		router.replace(LOGIN_URL);
+		router.replace('/login');
 		ElMessage.success("退出登录成功！");
 	});
 };

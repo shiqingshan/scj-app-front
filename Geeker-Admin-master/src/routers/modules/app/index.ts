@@ -2,9 +2,17 @@ import { RouteRecordRaw } from "vue-router";
 
 export const appRouters: RouteRecordRaw[] = [
 	{
-		path: "/home/index",
-		name: "home",
-		component: () => import("@/views/home/index.vue"),
+		path: "/app",
+		name: "appLayout",
+		redirect: "/app/home",
+		component: () => import("@/layouts/app-layout/HomeLayout.vue"),
+		children: [
+			{
+				path: "home",
+				name: "appHome",
+				component: () => import("@/views/admin/home/index.vue")
+			}
+		],
 		meta: {
 			icon: "HomeFilled",
 			title: "首页",

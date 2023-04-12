@@ -18,6 +18,7 @@ export const GlobalStore = defineStore({
 		assemblySize: "default",
 		// language
 		language: "",
+		accountType: "",
 		// themeConfig
 		themeConfig: {
 			// 当前页面是否全屏

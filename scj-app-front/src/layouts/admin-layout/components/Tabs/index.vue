@@ -22,7 +22,7 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { GlobalStore } from "@/stores";
 import { TabsStore } from "@/stores/modules/tabs";
-import { AuthStore } from "@/stores/modules/auth";
+import { useAuthStore } from "@/stores/modules/auth";
 import { KeepAliveStore } from "@/stores/modules/keepAlive";
 import { TabsPaneContext } from "element-plus";
 import MoreButton from "./components/MoreButton.vue";
@@ -31,7 +31,7 @@ const route = useRoute();
 const router = useRouter();
 const tabStore = TabsStore();
 const globalStore = GlobalStore();
-const authStore = AuthStore();
+const authStore = useAuthStore();
 const keepAliveStore = KeepAliveStore();
 
 const tabsMenuValue = ref(route.fullPath);

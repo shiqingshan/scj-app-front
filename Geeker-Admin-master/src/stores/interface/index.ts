@@ -5,6 +5,7 @@ export interface GlobalState {
 	assemblySize: AssemblySizeType;
 	language: string;
 	themeConfig: ThemeConfigProps;
+	accountType: string;
 }
 
 /* themeConfigProp */

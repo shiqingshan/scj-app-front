@@ -14,10 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import SearchMenu from "./components/SearchMenu.vue";
 import Fullscreen from "./components/Fullscreen.vue";
 import Message from "./components/Message.vue";
-import Language from "./components/Language.vue";
 import ThemeSetting from "./components/ThemeSetting.vue";
 import AssemblySize from "./components/AssemblySize.vue";
 import Avatar from "./components/Avatar.vue";

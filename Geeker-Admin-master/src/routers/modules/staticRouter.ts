@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
-import { HOME_URL, LOGIN_URL } from "@/config/config";
+import { ADMIN_HOME_URL, LOGIN_URL } from "@/config/config";
 
 /**
  * staticRouter(静态路由)
@@ -7,15 +7,27 @@ import { HOME_URL, LOGIN_URL } from "@/config/config";
 export const staticRouter: RouteRecordRaw[] = [
 	{
 		path: "/",
-		redirect: HOME_URL
+		redirect: "appHome"
+	},
+	{
+		path: "/admin",
+		redirect: ADMIN_HOME_URL
 	},
 	{
 		path: LOGIN_URL,
 		name: "login",
-		component: () => import("@/views/login/index.vue"),
+		component: () => import("@/views/admin/login/index.vue"),
 		meta: {
 			title: "登录"
 		}
+	},
+	{
+		path: "/layout",
+		name: "layout",
+		component: () => import("@/layouts/admin-layout/index.vue"),
+		// component: () => import("@/layouts/indexAsync.vue"),
+		redirect: ADMIN_HOME_URL,
+		children: []
 	}
 ];
 

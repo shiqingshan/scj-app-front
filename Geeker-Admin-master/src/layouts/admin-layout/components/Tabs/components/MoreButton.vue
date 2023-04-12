@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { computed, inject, nextTick } from "vue";
-import { HOME_URL } from "@/config/config";
+import { ADMIN_HOME_URL } from "@/config/config";
 import { GlobalStore } from "@/stores";
 import { TabsStore } from "@/stores/modules/tabs";
 import { KeepAliveStore } from "@/stores/modules/keepAlive";
@@ -76,7 +76,7 @@ const closeOtherTab = () => {
 const closeAllTab = () => {
 	tabStore.closeMultipleTab();
 	keepAliveStore.setKeepAliveName();
-	router.push(HOME_URL);
+	router.push(ADMIN_HOME_URL);
 };
 </script>
 

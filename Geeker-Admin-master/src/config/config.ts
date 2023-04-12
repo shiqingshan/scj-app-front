@@ -1,10 +1,10 @@
 // ? 全局不动配置项 只做导出不做修改
 
 // * 首页地址（默认）
-export const HOME_URL: string = "/home/index";
+export const ADMIN_HOME_URL: string = "/admin/home";
 
 // * 登录页地址（默认）
-export const LOGIN_URL: string = "/login";
+export const LOGIN_URL: string = "/admin/login";
 
 // * 默认主题颜色
 export const DEFAULT_PRIMARY: string = "#009688";
