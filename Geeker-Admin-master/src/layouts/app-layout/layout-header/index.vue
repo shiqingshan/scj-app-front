@@ -6,13 +6,17 @@
 		active-text-color="#ffd04b"
 		mode="horizontal"
 		:ellipsis="false"
+		:router="true"
 		@select="handleSelect"
 	>
-		<el-menu-item index="0">LOGO</el-menu-item>
+		<el-menu-item>
+			<img src="@/assets/images/logo.svg" alt="logo" />
+			<span>SCJ</span>
+		</el-menu-item>
 
-		<el-menu-item index="1">首页</el-menu-item>
-		<el-menu-item index="2">职位</el-menu-item>
-		<el-menu-item index="3">公司</el-menu-item>
+		<el-menu-item index="home">首页</el-menu-item>
+		<el-menu-item index="joblist">职位</el-menu-item>
+		<el-menu-item index="companylist">公司</el-menu-item>
 		<div class="flex-grow" />
 		<el-menu-item index="4">上传简历</el-menu-item>
 		<el-menu-item index="5">我要找工作</el-menu-item>
@@ -26,10 +30,13 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useMainHeader } from "@/stores/modules/app/mainHeader";
 
 const router = useRouter();
 const activeIndex = ref("1");
+const mainHeader = useMainHeader();
 const handleSelect = (key: string, keyPath: string[]) => {
+	mainHeader.headerState = key;
 	console.log(key, keyPath);
 };
 const toLogin = () => {

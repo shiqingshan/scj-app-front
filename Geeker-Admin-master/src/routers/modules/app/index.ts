@@ -10,18 +10,24 @@ export const appRouters: RouteRecordRaw[] = [
 			{
 				path: "home",
 				name: "appHome",
-				component: () => import("@/views/admin/home/index.vue")
+				component: () => import("@/views/app/home/index.vue")
+			},
+			{
+				path: "joblist",
+				name: "joblist",
+				component: () => import("@/views/app/job/list/index.vue")
+			},
+			{
+				path: "jobdetail",
+				name: "jobdetail",
+				component: () => import("@/views/app/job/detail/index.vue")
+			},
+			{
+				path: "companylist",
+				name: "companylist",
+				component: () => import("@/views/app/company/list/index.vue")
 			}
-		],
-		meta: {
-			icon: "HomeFilled",
-			title: "首页",
-			isLink: "",
-			isHide: false,
-			isFull: false,
-			isAffix: true,
-			isKeepAlive: true
-		}
+		]
 	},
 	{
 		path: "/login",
