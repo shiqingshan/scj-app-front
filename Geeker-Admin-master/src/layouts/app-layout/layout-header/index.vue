@@ -9,11 +9,12 @@
 		:router="true"
 		@select="handleSelect"
 	>
-		<el-menu-item>
+		<li ml-50></li>
+		<li flex content-center>
 			<img src="@/assets/images/logo.svg" alt="logo" />
-			<span>SCJ</span>
-		</el-menu-item>
-
+			<span mt-5>SCJ</span>
+		</li>
+		<el-menu-item> </el-menu-item>
 		<el-menu-item index="home">首页</el-menu-item>
 		<el-menu-item index="joblist">职位</el-menu-item>
 		<el-menu-item index="companylist">公司</el-menu-item>
@@ -22,7 +23,8 @@
 		<el-menu-item index="5">我要找工作</el-menu-item>
 		<el-menu-item index="6">我要招聘</el-menu-item>
 		<li style="margin-top: 10px">
-			<el-button info round @click="toLogin()">注册/登录</el-button>
+			<Avatar v-if="isHasToken" />
+			<el-button info round @click="toLogin()" v-else>注册/登录</el-button>
 		</li>
 	</el-menu>
 </template>
@@ -31,10 +33,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useMainHeader } from "@/stores/modules/app/mainHeader";
+import Avatar from "./Avatar.vue";
+import { GlobalStore } from "@/stores/index";
 
 const router = useRouter();
-const activeIndex = ref("1");
+const activeIndex = ref("home");
 const mainHeader = useMainHeader();
+const globalStore = GlobalStore();
+const isHasToken = globalStore.getToken() ? true : false;
 const handleSelect = (key: string, keyPath: string[]) => {
 	mainHeader.headerState = key;
 	console.log(key, keyPath);

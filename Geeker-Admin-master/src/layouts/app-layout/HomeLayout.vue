@@ -3,7 +3,7 @@
 		<el-container>
 			<LayoutHeader />
 			<el-main class="text-center" style="padding: 0%">
-				<MainHeader ma pa w-full />
+				<MainHeader />
 				<router-view ma ml-40> </router-view>
 			</el-main>
 			<el-footer class="absolute bottom-5 right-0 left-0 text-center op30 fw300"> SCJ </el-footer>

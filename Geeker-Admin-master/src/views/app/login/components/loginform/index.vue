@@ -29,11 +29,11 @@
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { useUserStore } from "@/stores/user";
+import { GlobalStore } from "@/stores/index";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { FormInstance, FormRules } from "element-plus";
-const loginStore = useUserStore();
+const loginStore = GlobalStore();
 const route = useRouter();
 const { accountType } = storeToRefs(loginStore);
 const loginFormRef = ref<FormInstance>();
@@ -58,9 +58,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 	await formEl.validate((valid, fields) => {
 		if (valid) {
 			loginStore
-				.login(form.username, form.password, form.accountType)
+				.login(form.username, form.password)
 				.then(() => {
-					route.push("/home");
+					route.push("/app/home");
 				})
 				.catch(() => {
 					console.log("login error");
@@ -82,7 +82,7 @@ const registerForm = () => {
 	margin-left: 40%;
 }
 .form {
-	margin-top: 20px;
 	width: 300px;
+	margin-top: 20px;
 }
 </style>

@@ -6,7 +6,7 @@ export const useRegisterStore = defineStore("userRegister", {
 	state: () => ({
 		form: {
 			accountType: "0",
-			userame: "",
+			username: "",
 			password: "",
 			companyName: "",
 			companyAddress: "",

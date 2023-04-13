@@ -15,7 +15,7 @@
 						<el-form-item label="密码：" prop="password">
 							<el-input v-model="form.password" />
 						</el-form-item>
-						<div v-if="accountType === '2'">
+						<div v-if="accountType === '1'">
 							<el-form-item
 								label="企业名称："
 								prop="companyName"
@@ -67,13 +67,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useUserStore } from "@/stores/user";
+import { GlobalStore } from "@/stores/index";
 import { useRegisterStore } from "@/stores/register";
 import { type FormInstance } from "element-plus";
 
 const registerFormRef = ref<FormInstance>();
 
-const loginStore = useUserStore();
+const loginStore = GlobalStore();
 console.log(loginStore.$state.accountType);
 const accountType = loginStore.accountType;
 const registerStore = useRegisterStore();

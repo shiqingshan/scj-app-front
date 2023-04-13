@@ -17,20 +17,13 @@
 			</el-dropdown-menu>
 		</template>
 	</el-dropdown>
-	<!-- infoDialog -->
-	<InfoDialog ref="infoRef"></InfoDialog>
-	<!-- passwordDialog -->
-	<PasswordDialog ref="passwordRef"></PasswordDialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import { GlobalStore } from "@/stores";
-import { LOGIN_URL } from "@/config/config";
 import { useRouter } from "vue-router";
 import { ElMessageBox, ElMessage } from "element-plus";
-import InfoDialog from "./InfoDialog.vue";
-import PasswordDialog from "./PasswordDialog.vue";
 
 const router = useRouter();
 const globalStore = GlobalStore();
@@ -45,7 +38,7 @@ const logout = () => {
 		// 1.调用退出登录接口
 		globalStore.logout();
 		// 3.重定向到登陆页
-		router.replace(LOGIN_URL);
+		router.push("/");
 		ElMessage.success("退出登录成功！");
 	});
 };

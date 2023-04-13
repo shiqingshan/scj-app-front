@@ -28,7 +28,6 @@ import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { Login } from "@/api/interface";
 import { ElNotification } from "element-plus";
-import { loginApi } from "@/api/modules/login";
 import { GlobalStore } from "@/stores";
 import { TabsStore } from "@/stores/modules/tabs";
 import { KeepAliveStore } from "@/stores/modules/keepAlive";
@@ -36,7 +35,6 @@ import { getTimeState } from "@/utils/util";
 import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
 import { CircleClose, UserFilled } from "@element-plus/icons-vue";
 import type { ElForm } from "element-plus";
-import md5 from "js-md5";
 
 const router = useRouter();
 const tabsStore = TabsStore();
@@ -60,9 +58,7 @@ const login = (formEl: FormInstance | undefined) => {
 		loading.value = true;
 		try {
 			// 1.执行登录接口
-			const { data } = await loginApi({ ...loginForm, password: md5(loginForm.password) });
-			globalStore.setToken(data.access_token);
-
+			globalStore.login(loginForm.username, loginForm.password);
 			// 2.添加动态路由
 			await initDynamicRouter();
 
@@ -74,7 +70,7 @@ const login = (formEl: FormInstance | undefined) => {
 			router.push("/admin/home");
 			ElNotification({
 				title: getTimeState(),
-				message: "欢迎登录 Geeker-Admin",
+				message: "欢迎登录",
 				type: "success",
 				duration: 3000
 			});

@@ -3,6 +3,8 @@ import { GlobalState, ThemeConfigProps, AssemblySizeType } from "./interface";
 import { DEFAULT_PRIMARY } from "@/config/config";
 import piniaPersistConfig from "@/config/piniaPersist";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import { setToken, getToken, getTokenKey, removeToken } from "@/utils/auth";
+import { login } from "@/api/app/user";
 
 // defineStore 调用后返回一个函数，调用该函数获得 Store 实体
 export const GlobalStore = defineStore({
@@ -53,6 +55,11 @@ export const GlobalStore = defineStore({
 		setToken(token: string) {
 			this.token = token;
 		},
+		getToken() {
+			const key = getTokenKey(this.accountType);
+			this.token = getToken(key);
+			return this.token;
+		},
 		// setUserInfo
 		setUserInfo(userInfo: any) {
 			this.userInfo = userInfo;
@@ -68,6 +75,26 @@ export const GlobalStore = defineStore({
 		// setThemeConfig
 		setThemeConfig(themeConfig: ThemeConfigProps) {
 			this.themeConfig = themeConfig;
+		},
+		login(username: string, password: string) {
+			const accountType = this.accountType;
+			return new Promise((resolve, reject) => {
+				login(username, password, accountType)
+					.then((res: any) => {
+						console.log(res);
+						const key = getTokenKey(accountType);
+						setToken(key, res.data.token);
+						this.token = res.data.token;
+						resolve(1);
+					})
+					.catch(error => {
+						reject(error);
+					});
+			});
+		},
+		logout() {
+			removeToken(getTokenKey(this.accountType));
+			this.token = "";
 		}
 	},
 	persist: piniaPersistConfig("GlobalState")

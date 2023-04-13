@@ -1,12 +1,12 @@
 /* eslint-disable camelcase */
 import axios from "axios";
 import { ElNotification, ElMessageBox, ElMessage, ElLoading } from "element-plus";
-import { getToken } from "@/utils/auth";
+import { getToken, getTokenKey } from "@/utils/auth";
 import errorCode from "@/utils/errorCode";
 import { tansParams, blobValidate } from "@/utils/common";
 import cache from "@/plugins/cache";
 import { saveAs } from "file-saver";
-import { useUserStore } from "@/stores/user";
+import { GlobalStore } from "@/stores/index";
 
 // 创建一个错误
 let downloadLoadingInstance: ReturnType<typeof ElLoading.service>;
@@ -32,8 +32,12 @@ service.interceptors.request.use(
 		const isToken = (config.headers || {}).isToken === false;
 		// 是否需要防止数据重复提交
 		const isRepeatSubmit = (config.headers || {}).repeatSubmit === false;
-		if (getToken() && !isToken && config.headers) {
-			config.headers["Authorization"] = "Bearer " + getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
+		const userStore = GlobalStore();
+		const accountType = userStore.accountType;
+		const key = getTokenKey(accountType);
+		console.log("tokenKey", key);
+		if (getToken(key) && !isToken && config.headers) {
+			config.headers["Authorization"] = "Bearer " + getToken(key); // 让每个请求携带自定义token 请根据实际情况自行修改
 		}
 		// get请求映射params参数
 		if (config.method === "get" && config.params) {

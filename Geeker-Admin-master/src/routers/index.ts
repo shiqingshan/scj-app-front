@@ -56,15 +56,9 @@ router.beforeEach(async (to, from, next) => {
 	// 2.动态设置标题
 	const title = import.meta.env.VITE_GLOB_APP_TITLE;
 	document.title = to.meta.title ? `${to.meta.title} - ${title}` : title;
-	console.log(globalStore.accountType);
+	console.log("router", globalStore.accountType);
 
-	if (accountType == "0") {
-		resetRouter();
-		return next();
-	}
-	// // 3.判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由并放行到登陆页
-	if (to.path.toLocaleLowerCase() === LOGIN_URL) {
-		if (globalStore.token) return next(from.fullPath);
+	if (accountType === "0") {
 		resetRouter();
 		return next();
 	}
@@ -72,8 +66,16 @@ router.beforeEach(async (to, from, next) => {
 	// // 4.判断访问页面是否在路由白名单地址中，如果存在直接放行
 	if (ROUTER_WHITE_LIST.includes(to.path)) return next();
 	// 5.判断是否有 Token，没有重定向到 login
-	if ((globalStore.accountType = "2")) {
-		if (!globalStore.token) return next({ path: LOGIN_URL, replace: true });
+	if (accountType === "2") {
+		// // 3.判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由并放行到登陆页
+		if (to.path.toLocaleLowerCase() === LOGIN_URL) {
+			if (globalStore.token) return next(from.fullPath);
+			resetRouter();
+			return next();
+		}
+		console.log("glt", globalStore.getToken());
+		const token = globalStore.getToken();
+		if (!token) return next({ path: LOGIN_URL, replace: true });
 		// // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
 		const authStore = AuthStore();
 		authStore.setRouteName(to.name as string);
