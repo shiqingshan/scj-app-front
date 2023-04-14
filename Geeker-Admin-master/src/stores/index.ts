@@ -93,8 +93,15 @@ export const GlobalStore = defineStore({
 			});
 		},
 		logout() {
-			removeToken(getTokenKey(this.accountType));
-			this.token = "";
+			return new Promise((resolve, reject) => {
+				try {
+					removeToken(getTokenKey(this.accountType));
+					this.token = "";
+					resolve(1);
+				} catch (e) {
+					reject(e);
+				}
+			});
 		}
 	},
 	persist: piniaPersistConfig("GlobalState")

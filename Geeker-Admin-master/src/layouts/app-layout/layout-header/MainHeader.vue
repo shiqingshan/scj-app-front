@@ -2,14 +2,18 @@
 	<div class="bg-#74d1af ma pa w-full color-white b" v-if="mainHeader.headerState == 'jobdetail'">
 		<div ml-50>
 			<el-row>
-				<el-col :span="1" flex>招聘中</el-col>
+				<el-col :span="24" flex>{{ mainHeader.jobHeader.jobStatus }}</el-col>
 			</el-row>
 			<el-row>
-				<el-col :span="24" flex font-500 text-3xl>职位信息</el-col>
+				<el-col :span="24" flex font-500 text-3xl>{{ mainHeader.jobHeader.jobName }}</el-col>
 			</el-row>
 			<el-row>
-				<el-col :span="3" flex>
-					<el-space> <span>年限</span><span>年限</span><span>年限</span> </el-space>
+				<el-col :span="24" flex>
+					<el-space>
+						<span>{{ mainHeader.jobHeader.jobAddr }}</span>
+						<span>{{ mainHeader.jobHeader.jobQualification }}</span>
+						<span>{{ mainHeader.jobHeader.jobEdu }}</span>
+					</el-space>
 				</el-col>
 			</el-row>
 		</div>

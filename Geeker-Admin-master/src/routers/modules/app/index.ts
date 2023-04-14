@@ -18,7 +18,7 @@ export const appRouters: RouteRecordRaw[] = [
 				component: () => import("@/views/app/job/list/index.vue")
 			},
 			{
-				path: "jobdetail",
+				path: "jobdetail/:id",
 				name: "jobdetail",
 				component: () => import("@/views/app/job/detail/index.vue")
 			},

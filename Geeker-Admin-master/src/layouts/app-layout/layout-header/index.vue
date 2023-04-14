@@ -15,9 +15,9 @@
 			<span mt-5>SCJ</span>
 		</li>
 		<el-menu-item> </el-menu-item>
-		<el-menu-item index="home">首页</el-menu-item>
-		<el-menu-item index="joblist">职位</el-menu-item>
-		<el-menu-item index="companylist">公司</el-menu-item>
+		<el-menu-item index="home" route="/app/home">首页</el-menu-item>
+		<el-menu-item index="joblist" route="/app/joblist">职位</el-menu-item>
+		<el-menu-item index="companylist" route="/app/companylist">公司</el-menu-item>
 		<div class="flex-grow" />
 		<el-menu-item index="4">上传简历</el-menu-item>
 		<el-menu-item index="5">我要找工作</el-menu-item>
