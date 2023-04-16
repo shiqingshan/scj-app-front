@@ -26,6 +26,29 @@ export const appRouters: RouteRecordRaw[] = [
 				path: "companylist",
 				name: "companylist",
 				component: () => import("@/views/app/company/list/index.vue")
+			},
+			{
+				path: "resume",
+				name: "resume",
+				component: () => import("@/views/app/resume/index.vue")
+			},
+			{
+				path: "chat",
+				name: "chat",
+				redirect: "/app/chat/apply",
+				component: () => import("@/views/app/job/chat/index.vue"),
+				children: [
+					{
+						path: "apply",
+						name: "chatApply",
+						component: () => import("@/views/app/job/chat/apply/index.vue")
+					},
+					{
+						path: "interview",
+						name: "chatInterview",
+						component: () => import("@/views/app/job/chat/interview/index.vue")
+					}
+				]
 			}
 		]
 	},

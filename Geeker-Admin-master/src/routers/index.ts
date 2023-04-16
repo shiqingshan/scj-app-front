@@ -84,6 +84,24 @@ router.beforeEach(async (to, from, next) => {
 			return next({ ...to, replace: true });
 		}
 	}
+	if (accountType === "1") {
+		//如果是登录注册页面，直接放行
+		if (to.path.toLocaleLowerCase() === "/login" || to.path.toLocaleLowerCase() === "/register") {
+			if (globalStore.token) return next(from.fullPath);
+			resetRouter();
+			return next();
+		}
+		console.log("企业", globalStore.getToken());
+		const token = globalStore.getToken();
+		if (!token) return next({ path: "/login", replace: true });
+		// // 6.如果没有菜单列表，就重新请求菜单列表并添加动态路由
+		const authStore = AuthStore();
+		authStore.setRouteName(to.name as string);
+		if (!authStore.authMenuListGet.length) {
+			await initDynamicRouter();
+			return next({ ...to, replace: true });
+		}
+	}
 	// 7.正常访问页面
 	next();
 });

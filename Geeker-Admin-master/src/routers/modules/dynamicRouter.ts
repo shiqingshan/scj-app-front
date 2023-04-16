@@ -5,6 +5,8 @@ import { ElNotification } from "element-plus";
 import { GlobalStore } from "@/stores";
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 import { AuthStore } from "@/stores/modules/auth";
+import { TabsStore } from "@/stores/modules/tabs";
+import { KeepAliveStore } from "@/stores/modules/keepAlive";
 
 // 引入 views 文件夹下所有 vue 文件
 const modules = import.meta.glob("@/views/**/*.vue");
@@ -15,6 +17,8 @@ const modules = import.meta.glob("@/views/**/*.vue");
 export const initDynamicRouter = async () => {
 	const authStore = AuthStore();
 	const globalStore = GlobalStore();
+	const tabsStore = TabsStore();
+	const keepAliveStore = KeepAliveStore();
 	try {
 		// 1.获取菜单列表 && 按钮权限（可合并到一个接口获取，根据后端不同可自行改造）
 		await authStore.getAuthMenuList();
@@ -46,6 +50,10 @@ export const initDynamicRouter = async () => {
 				router.addRoute("layout", item);
 			}
 		});
+		// 3.清空 tabs、keepAlive 保留的数据
+		tabsStore.$reset();
+		keepAliveStore.setKeepAliveName();
+		console.log("动态路由结束");
 	} catch (error) {
 		console.error(error);
 		// 💢 当按钮 || 菜单请求出错时，重定向到登陆页

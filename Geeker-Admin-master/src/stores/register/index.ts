@@ -4,14 +4,16 @@ import { register } from "@/api/app/user";
 
 export const useRegisterStore = defineStore("userRegister", {
 	state: () => ({
+		formType: "login",
 		form: {
+			title: "校园招聘学生登录",
 			accountType: "0",
 			username: "",
 			password: "",
+			emailAddr: "",
+			phoneNumber: "",
+			nickName: "",
 			companyName: "",
-			companyAddress: "",
-			contact: "",
-			contactPhone: "",
 			businessLicense: ""
 		},
 		rules: <FormRules>{

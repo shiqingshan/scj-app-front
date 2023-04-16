@@ -19,13 +19,16 @@
 		<el-menu-item index="joblist" route="/app/joblist">职位</el-menu-item>
 		<el-menu-item index="companylist" route="/app/companylist">公司</el-menu-item>
 		<div class="flex-grow" />
-		<el-menu-item index="4">上传简历</el-menu-item>
 		<el-menu-item index="5">我要找工作</el-menu-item>
 		<el-menu-item index="6">我要招聘</el-menu-item>
-		<li style="margin-top: 10px">
+
+		<el-menu-item index="resume" route="/app/resume">简历</el-menu-item>
+		<li mt-4 color-white hover-cursor-pointer hover-color-emerald text-4 @click="uploadResumeFile">上传</li>
+		<li style="margin-top: 10px" ml-5>
 			<Avatar v-if="isHasToken" />
 			<el-button info round @click="toLogin()" v-else>注册/登录</el-button>
 		</li>
+		<li mr-60></li>
 	</el-menu>
 </template>
 
@@ -47,5 +50,8 @@ const handleSelect = (key: string, keyPath: string[]) => {
 };
 const toLogin = () => {
 	router.push("/login");
+};
+const uploadResumeFile = () => {
+	console.log("uploadResumeFile");
 };
 </script>

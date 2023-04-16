@@ -20,6 +20,7 @@
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.0.10",
+		"@vicons/ionicons4": "^0.12.0",
 		"@vueuse/core": "^9.12.0",
 		"@wangeditor/editor": "^5.1.12",
 		"@wangeditor/editor-for-vue": "^5.1.12",

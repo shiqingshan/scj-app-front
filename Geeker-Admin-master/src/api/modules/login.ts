@@ -1,6 +1,7 @@
 import { Login } from "@/api/interface/index";
 import { PORT1 } from "@/api/config/servicePort";
 import DynamicRouter from "@/assets/json/adminMenu.json";
+import companyRouter from "@/assets/json/companyMenu.json";
 import AuthButtons from "@/assets/json/authButtons.json";
 import qs from "qs";
 import http from "@/api";
@@ -25,10 +26,17 @@ export const getAuthButtonListApi = () => {
 };
 
 // * 获取菜单列表
-export const getAuthMenuListApi = () => {
+export const getAuthAdminMenuListApi = () => {
 	//return http.get<Menu.MenuOptions[]>(PORT1 + `/menu/list`, {}, { headers: { noLoading: true } });
 	// 如果想让菜单变为本地数据，注释上一行代码，并引入本地 dynamicRouter.json 数据
 	return DynamicRouter;
+};
+
+// * 获取菜单列表
+export const getAuthCompanyMenuListApi = () => {
+	//return http.get<Menu.MenuOptions[]>(PORT1 + `/menu/list`, {}, { headers: { noLoading: true } });
+	// 如果想让菜单变为本地数据，注释上一行代码，并引入本地 dynamicRouter.json 数据
+	return companyRouter;
 };
 
 // * 用户退出登录

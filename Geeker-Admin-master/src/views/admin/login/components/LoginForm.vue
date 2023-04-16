@@ -25,7 +25,8 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted } from "vue";
-import { useRouter } from "vue-router";
+//import { useRouter } from "vue-router";
+import routerIn from "@/routers/index";
 import { Login } from "@/api/interface";
 import { ElNotification } from "element-plus";
 import { GlobalStore } from "@/stores";
@@ -36,7 +37,7 @@ import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
 import { CircleClose, UserFilled } from "@element-plus/icons-vue";
 import type { ElForm } from "element-plus";
 
-const router = useRouter();
+//const router = useRouter();
 const tabsStore = TabsStore();
 const keepAlive = KeepAliveStore();
 const globalStore = GlobalStore();
@@ -58,21 +59,23 @@ const login = (formEl: FormInstance | undefined) => {
 		loading.value = true;
 		try {
 			// 1.执行登录接口
-			globalStore.login(loginForm.username, loginForm.password);
-			// 2.添加动态路由
-			await initDynamicRouter();
+			globalStore.login(loginForm.username, loginForm.password).then(async (res: any) => {
+				console.log("res", res);
+				// 2.添加动态路由
+				await initDynamicRouter();
 
-			// 3.清空 tabs、keepAlive 保留的数据
-			tabsStore.closeMultipleTab();
-			keepAlive.setKeepAliveName();
+				// 3.清空 tabs、keepAlive 保留的数据
+				tabsStore.$reset();
+				keepAlive.setKeepAliveName();
 
-			// 4.跳转到首页
-			router.push("/admin/home");
-			ElNotification({
-				title: getTimeState(),
-				message: "欢迎登录",
-				type: "success",
-				duration: 3000
+				// 4.跳转到首页
+				routerIn.push("/admin/home");
+				ElNotification({
+					title: getTimeState(),
+					message: "欢迎登录",
+					type: "success",
+					duration: 3000
+				});
 			});
 		} finally {
 			loading.value = false;

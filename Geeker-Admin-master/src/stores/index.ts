@@ -4,7 +4,7 @@ import { DEFAULT_PRIMARY } from "@/config/config";
 import piniaPersistConfig from "@/config/piniaPersist";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import { setToken, getToken, getTokenKey, removeToken } from "@/utils/auth";
-import { login } from "@/api/app/user";
+import { login, getUserInfoApi, logout } from "@/api/app/user";
 
 // defineStore 调用后返回一个函数，调用该函数获得 Store 实体
 export const GlobalStore = defineStore({
@@ -92,9 +92,23 @@ export const GlobalStore = defineStore({
 					});
 			});
 		},
+		getUserInfo() {
+			console.log("store", "getUserInfo");
+			return new Promise((resolve, reject) => {
+				getUserInfoApi()
+					.then((res: any) => {
+						this.userInfo = res.data;
+						resolve(res.data);
+					})
+					.catch(error => {
+						reject(error);
+					});
+			});
+		},
 		logout() {
 			return new Promise((resolve, reject) => {
 				try {
+					logout();
 					removeToken(getTokenKey(this.accountType));
 					this.token = "";
 					resolve(1);

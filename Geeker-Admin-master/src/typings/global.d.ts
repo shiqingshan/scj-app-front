@@ -51,3 +51,21 @@ declare interface ViteEnv {
 	VITE_BUILD_GZIP: boolean;
 	VITE_REPORT: boolean;
 }
+
+import { addDateRange, handleTree, parseTime, resetForm } from "@/utils/ruoyi";
+import cache from "@/plugins/cache";
+import modal from "@/plugins/modal";
+
+export {};
+declare module "vue" {
+	interface ComponentCustomProperties {
+		parseTime: typeof parseTime;
+		resetForm: typeof resetForm;
+		handleTree: typeof handleTree;
+		addDateRange: typeof addDateRange;
+		// 缓存对象
+		$cache: typeof cache;
+		// 模态框对象
+		$modal: typeof modal;
+	}
+}

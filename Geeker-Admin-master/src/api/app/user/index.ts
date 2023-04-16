@@ -27,3 +27,17 @@ export function register(data: any) {
 		data: data
 	});
 }
+
+export function getUserInfoApi() {
+	return request({
+		url: "/user/auth/getUserInfo",
+		method: "get"
+	});
+}
+
+export function logout() {
+	return request({
+		url: "/user/auth/logout",
+		method: "post"
+	});
+}

@@ -8,8 +8,11 @@
 				</div>
 				<div class="login-register-content">
 					<div class="login-phone-wrapper">
-						<h3 class="title">校园招聘登录</h3>
-						<AppLoginform />
+						<h3 class="title">{{ registerStore.form.title }}</h3>
+						<div class="loginform">
+							<AppLoginform v-if="registerStore.formType == 'login'" />
+							<AppRegisterForm v-else />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -19,6 +22,9 @@
 
 <script lang="ts" setup>
 import AppLoginform from "./components/loginform/index.vue";
+import AppRegisterForm from "./components/register/Register.vue";
+import { useRegisterStore } from "@/stores/register/index";
+const registerStore = useRegisterStore();
 </script>
 
 <style lang="scss" scoped>
@@ -31,9 +37,9 @@ import AppLoginform from "./components/loginform/index.vue";
 	height: 100%;
 }
 .page-sign {
-	background: #6979cb url(https://img.bosszhipin.com/static/file/2022/zlqc2m9fao1667185843533.png) bottom/100% auto no-repeat;
 	width: 100vw;
 	height: 100vh;
+	background: #6979cb url(https://img.bosszhipin.com/static/file/2022/zlqc2m9fao1667185843533.png) bottom/100% auto no-repeat;
 	#header {
 		background: 0 0;
 		box-shadow: none;
@@ -43,25 +49,25 @@ import AppLoginform from "./components/loginform/index.vue";
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 728px;
-	height: 580px;
-	margin-left: -364px;
-	margin-top: -290px;
-	background: #fff;
-	box-shadow: 0 6px 13px 0 rgba(0, 0, 0, 0.1);
-	border-radius: 28px;
 	z-index: 2;
 	box-sizing: border-box;
+	width: 728px;
+	height: 580px;
+	margin-top: -290px;
+	margin-left: -364px;
+	background: #ffffff;
+	border-radius: 28px;
+	box-shadow: 0 6px 13px 0 rgb(0 0 0 / 10%);
 }
 .side-slide-box {
+	box-sizing: border-box;
 	float: left;
 	width: 240px;
 	height: 100%;
-	background: linear-gradient(192deg, #697ecb, #edded2);
-	border-radius: 28px 0 0 28px;
 	padding-left: 32px;
 	font-size: 14px;
-	box-sizing: border-box;
+	background: linear-gradient(192deg, #697ecb, #edded2);
+	border-radius: 28px 0 0 28px;
 	.desc-list {
 		overflow: hidden;
 		li {
@@ -74,16 +80,14 @@ import AppLoginform from "./components/loginform/index.vue";
 	width: 360px;
 	margin: 0 auto;
 }
-
 .title {
+	margin-top: 10%;
 	font-size: 22px;
 	font-weight: 500;
-	color: #222;
 	line-height: 30px;
+	color: #222222;
 	text-align: center;
-	margin-top: 10%;
 }
-
 a,
 b,
 body,
@@ -115,15 +119,19 @@ ul {
 	padding: 0;
 	margin: 0;
 	-webkit-tap-highlight-color: transparent;
-	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
 }
 ul {
 	display: block;
-	list-style-type: disc;
+	padding-inline-start: 40px;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 40px;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	list-style-type: disc;
+}
+.loginform {
+	margin-top: 10%;
+	margin-left: 40%;
 }
 </style>

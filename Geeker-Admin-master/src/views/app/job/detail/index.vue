@@ -3,6 +3,7 @@
 		<el-row>
 			<el-col :span="4">
 				<h2>职位描述</h2>
+				<span>{{ jobDescribe }}</span>
 			</el-col>
 		</el-row>
 	</div>
@@ -10,23 +11,20 @@
 
 <script setup lang="ts">
 import { useMainHeader } from "@/stores/modules/app/mainHeader";
-import { onBeforeUnmount } from "vue";
+import { onBeforeUnmount, ref } from "vue";
+import { useRouter } from "vue-router";
+import { getJobInfo } from "@/api/admin/job/info";
 
 const mainHeader = useMainHeader();
+const router = useRouter();
 mainHeader.headerState = "jobdetail";
-const data = {
-	jobId: "1",
-	jobName: "工作1",
-	jobSalary: "15-17K",
-	jobAddr: "上海",
-	jobQualification: "1-3年",
-	contact: "xxx",
-	coName: "xxx公司",
-	positionName: "java",
-	jobEdu: "本科",
-	jobStatus: "招聘中"
-};
-mainHeader.setJobHeader(data);
+const jobDescribe = ref("");
+const id = router.currentRoute.value.params.id;
+console.log("jobId", id);
+getJobInfo(id).then((res: any) => {
+	mainHeader.setJobHeader(res.data);
+	jobDescribe.value = res.data.jobDescribe;
+});
 onBeforeUnmount(() => {
 	console.log("likai");
 	mainHeader.$reset();
