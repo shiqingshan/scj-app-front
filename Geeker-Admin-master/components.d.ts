@@ -81,6 +81,7 @@ declare module 'vue' {
     NLayout: typeof import('naive-ui')['NLayout']
     NList: typeof import('naive-ui')['NList']
     NListItem: typeof import('naive-ui')['NListItem']
+    NPagination: typeof import('naive-ui')['NPagination']
     NRow: typeof import('naive-ui')['NRow']
     NSpace: typeof import('naive-ui')['NSpace']
     NTab: typeof import('naive-ui')['NTab']
