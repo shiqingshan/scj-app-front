@@ -23,3 +23,15 @@ export function listUserResumeFile() {
 		method: "get"
 	});
 }
+
+//添加用户简历文件
+export function addUserResumeFile(data: any) {
+	return request({
+		url: "/user/resume/file/add",
+		headers: {
+			"Content-Type": "multipart/form-data"
+		},
+		method: "post",
+		data: data
+	});
+}

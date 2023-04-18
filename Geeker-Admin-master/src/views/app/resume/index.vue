@@ -136,7 +136,9 @@
 						<template #footer>
 							<n-grid :x-gap="12" :y-gap="8" :cols="1">
 								<n-grid-item>
-									<n-button block type="primary" round @click="uploadFile()">上传</n-button>
+									<n-upload :custom-request="customRequest" @finish="handleFinish">
+										<n-button block type="primary" round>上传文件</n-button>
+									</n-upload>
 								</n-grid-item>
 							</n-grid>
 						</template>
@@ -151,15 +153,28 @@
 				</n-card>
 			</n-grid-item>
 		</n-grid>
+		<!-- <n-modal v-model:show="showModal" preset="dialog" title="Dialog">
+			<template #header>
+				<div>简历附件上传</div>
+			</template>
+			<div>
+				<UploadResume />
+			</div>
+			<template #action>
+				<div>操作</div>
+			</template>
+		</n-modal> -->
 	</n-layout>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, toRefs } from "vue";
-import { getUseOnlineResume, updateUserResume, listUserResumeFile } from "@/api/app/resume";
+import { getUseOnlineResume, updateUserResume, listUserResumeFile, addUserResumeFile } from "@/api/app/resume";
 import { ElMessage } from "element-plus";
 import { FormInst } from "naive-ui";
+//import UploadResume from "./upload/index.vue";
 const formRef = ref<FormInst | null>(null);
+//const showModal = ref(false);
 const resumeFileList = ref<any[]>([]);
 const data = reactive<{
 	form: any;
@@ -207,8 +222,22 @@ const submit = () => {
 const reset = () => {
 	console.log("reset");
 };
-const uploadFile = () => {
-	console.log("uploadFile");
+// const uploadFile = () => {
+// 	//showModal.value = true;
+// 	console.log("uploadFile");
+// };
+const customRequest = (file: any) => {
+	let formData = new FormData();
+	formData.append("file", file);
+	addUserResumeFile(formData).then(res => {
+		console.log(res);
+		ElMessage.success("上传成功");
+		getFileList();
+	});
+	console.log(file);
+};
+const handleFinish = (file: any) => {
+	console.log(file);
 };
 getResumeOnline();
 getFileList();

@@ -27,7 +27,7 @@ export function addApply(data: any) {
 //获取当前学生的投递申请
 export function listUserApply(query?: any) {
 	return request({
-		url: "/job/apply/user/list",
+		url: "/job/apply/user/page/list",
 		method: "get",
 		params: query
 	});

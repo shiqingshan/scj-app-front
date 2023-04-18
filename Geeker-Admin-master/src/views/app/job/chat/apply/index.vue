@@ -3,28 +3,28 @@
 		<template v-for="(item, index) in applyList" :key="index">
 			<n-card title="职位名称" :header-style="headerStyle">
 				<template #header>
-					<div flex>sss</div>
+					<div flex>{{ item.jobInfo.contact }}</div>
 				</template>
-				<template #header-extra> {{ item.jobStatus }} </template>
+				<template #header-extra> {{ jobStatusDicts[item.jobInfo.jobStatus].label }} </template>
 				<n-grid x-gap="12" :cols="6" mt-2>
 					<n-grid-item :span="3">
 						<n-grid :cols="24">
-							<n-gi :span="2" text-4 font-500>{{ item.jobName }}</n-gi>
-							<n-gi :span="2" text-4 font-500>[{{ item.jobAddr }}]</n-gi>
+							<n-gi :span="2" text-4 font-500>{{ item.jobInfo.jobName }}</n-gi>
+							<n-gi :span="2" text-4 font-500>[{{ item.jobInfo.jobAddr }}]</n-gi>
 						</n-grid>
 						<n-grid :cols="24" mt-2>
 							<n-gi :span="24"
 								><n-space>
-									<span color-red>{{ item.jobSalary }}</span>
-									<span>{{ item.jobQualification }}</span>
-									<span>{{ item.jobEdu }}</span>
+									<span color-red>{{ item.jobInfo.jobSalary }}</span>
+									<span>{{ item.jobInfo.jobQualification }}</span>
+									<span>{{ item.jobInfo.jobEdu }}</span>
 								</n-space></n-gi
 							>
 						</n-grid>
 					</n-grid-item>
 					<n-grid-item :span="3">
 						<n-grid :cols="24">
-							<n-gi :span="2" text-4 font-500>xxx公司</n-gi>
+							<n-gi :span="2" text-4 font-500>{{ item.jobInfo.coName }}</n-gi>
 						</n-grid>
 					</n-grid-item>
 				</n-grid>
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { listApply } from "@/api/app/apply";
+import { listUserApply } from "@/api/app/apply";
 import { reactive, ref, toRefs } from "vue";
 const total = ref(0);
 const applyList = ref<any[]>([]);
@@ -56,6 +56,24 @@ const data = reactive<{ queryParams: any }>({
 });
 const { queryParams } = toRefs(data);
 
+const jobStatusDicts = [
+	{
+		value: "0",
+		label: "发布中"
+	},
+	{
+		value: "1",
+		label: "已下架"
+	},
+	{
+		value: "2",
+		label: "待审核"
+	},
+	{
+		value: "3",
+		label: "审核不通过"
+	}
+];
 function updatePage(page: number) {
 	queryParams.value.pageNum = page;
 	console.log("updatePage", queryParams);
@@ -67,7 +85,7 @@ function updateSizePage(pageSize: number) {
 }
 
 function getList() {
-	listApply(queryParams.value).then(res => {
+	listUserApply(queryParams.value).then(res => {
 		applyList.value = res.data.list;
 		total.value = res.data.total;
 	});
