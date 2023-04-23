@@ -57,3 +57,11 @@ export function listCompanyTree() {
 		method: "get"
 	});
 }
+//获取热门企业
+export function listHotCompany(query?: any) {
+	return request({
+		url: "/company/hot/list",
+		method: "get",
+		params: query
+	});
+}

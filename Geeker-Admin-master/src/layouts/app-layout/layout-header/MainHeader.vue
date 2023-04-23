@@ -62,6 +62,19 @@
 			</template>
 		</el-dialog>
 	</div>
+	<div class="bg-#74d1af ma pa w-full color-white b" v-else-if="mainHeader.headerState == 'companydetail'">
+		<div ml-50>
+			<el-row>
+				<el-col :span="24" flex font-500 text-3xl>
+					<el-space>
+						<div>
+							{{ mainHeader.companyHeader.name }}
+						</div>
+					</el-space>
+				</el-col>
+			</el-row>
+		</div>
+	</div>
 	<div mt-10 v-else></div>
 </template>
 

@@ -1,21 +1,50 @@
 <template>
 	<div>
-		<el-row>
-			<el-col>
-				<el-card :body-style="{ padding: '0px' }">
-					<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image" />
-					<div style="padding: 14px">
-						<span>Yummy hamburger</span>
-						<div class="bottom">
-							<el-button text class="button">Operating</el-button>
+		<n-grid x-gap="12" :y-gap="8" :cols="4">
+			<template v-for="(item, index) in companyList" :key="index">
+				<n-gi>
+					<n-card hoverable @click="toDetail(item.id)">
+						<template #header>
+							<div>
+								<span>{{ item.name }}</span>
+							</div>
+						</template>
+						<div>
+							<span>{{ item.address }}</span>
 						</div>
-					</div>
-				</el-card>
-			</el-col>
-		</el-row>
+					</n-card>
+				</n-gi>
+			</template>
+		</n-grid>
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { listCompany } from "@/api/admin/company/info";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
-<style scoped></style>
+const companyList = ref<any[]>([]);
+
+function getList() {
+	listCompany().then(res => {
+		companyList.value = res.data.list;
+	});
+}
+const toDetail = (id: any) => {
+	router.push("/app/companydetail/" + id);
+};
+getList();
+</script>
+
+<style scoped>
+.light-green {
+	height: 108px;
+	background-color: rgb(0 128 0 / 12%);
+}
+.green {
+	height: 108px;
+	background-color: rgb(0 128 0 / 24%);
+}
+</style>

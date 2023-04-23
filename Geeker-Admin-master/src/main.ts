@@ -38,7 +38,7 @@ import "uno.css";
 
 import plugins from "./plugins"; // plugins
 
-import { parseTime, resetForm, addDateRange, handleTree } from "@/utils/ruoyi";
+import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel } from "@/utils/ruoyi";
 // 分页组件
 import Pagination from "@/components/Pagination/index.vue";
 // 自定义树选择组件
@@ -51,6 +51,7 @@ import RightToolbar from "@/components/RightToolbar/index.vue";
 const app = createApp(App);
 
 app.config.globalProperties.parseTime = parseTime;
+app.config.globalProperties.selectDictLabel = selectDictLabel;
 app.config.globalProperties.resetForm = resetForm;
 app.config.globalProperties.handleTree = handleTree;
 app.config.globalProperties.addDateRange = addDateRange;

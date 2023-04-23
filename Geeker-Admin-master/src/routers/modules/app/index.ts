@@ -28,6 +28,11 @@ export const appRouters: RouteRecordRaw[] = [
 				component: () => import("@/views/app/company/list/index.vue")
 			},
 			{
+				path: "companydetail/:id",
+				name: "companydetail",
+				component: () => import("@/views/app/company/detail/index.vue")
+			},
+			{
 				path: "resume",
 				name: "resume",
 				component: () => import("@/views/app/resume/index.vue")

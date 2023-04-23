@@ -87,6 +87,7 @@ export function selectDictLabel(datas: any, value: any) {
 	if (actions.length === 0) {
 		actions.push(value);
 	}
+	console.log(actions.join(""));
 	return actions.join("");
 }
 

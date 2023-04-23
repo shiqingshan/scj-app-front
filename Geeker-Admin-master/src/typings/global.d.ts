@@ -52,7 +52,7 @@ declare interface ViteEnv {
 	VITE_REPORT: boolean;
 }
 
-import { addDateRange, handleTree, parseTime, resetForm } from "@/utils/ruoyi";
+import { addDateRange, handleTree, parseTime, resetForm, selectDictLabel } from "@/utils/ruoyi";
 import cache from "@/plugins/cache";
 import modal from "@/plugins/modal";
 
@@ -60,6 +60,7 @@ export {};
 declare module "vue" {
 	interface ComponentCustomProperties {
 		parseTime: typeof parseTime;
+		selectDictLabel: typeof selectDictLabel;
 		resetForm: typeof resetForm;
 		handleTree: typeof handleTree;
 		addDateRange: typeof addDateRange;

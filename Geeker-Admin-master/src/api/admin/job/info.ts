@@ -49,3 +49,12 @@ export function listUserJobInfo(query?: any) {
 		params: query
 	});
 }
+
+//获取热门职位
+export function listHotJobInfo(query?: any) {
+	return request({
+		url: "/job/jobInfo/hot/list",
+		method: "get",
+		params: query
+	});
+}

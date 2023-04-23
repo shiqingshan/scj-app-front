@@ -15,6 +15,10 @@ export const useMainHeader = defineStore("mainHeader", {
 			openSelectResume: false,
 			resumeList: [] as any[]
 		},
+		companyHeader: {
+			name: "",
+			address: ""
+		},
 		jobStatusDicts: [
 			{
 				value: "0",
@@ -43,6 +47,9 @@ export const useMainHeader = defineStore("mainHeader", {
 		//设置职位头
 		setJobHeader(data: any) {
 			this.jobHeader = data;
+		},
+		setCompanyHeader(data: any) {
+			this.companyHeader = data;
 		}
 	}
 });

@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<template v-for="(item, index) in applyList" :key="index">
-			<n-card title="职位名称" :header-style="headerStyle">
+			<n-card title="职位名称" hoverable :header-style="headerStyle">
 				<template #header>
 					<div flex>{{ item.jobInfo.contact }}</div>
 				</template>
-				<template #header-extra> {{ jobStatusDicts[item.jobInfo.jobStatus].label }} </template>
+				<template #header-extra> {{ selectDictLabel(jobStatusDicts, item.jobInfo.jobStatus) }} </template>
 				<n-grid x-gap="12" :cols="6" mt-2>
 					<n-grid-item :span="3">
 						<n-grid :cols="24">

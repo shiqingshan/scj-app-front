@@ -16,7 +16,7 @@
 			</n-tooltip>
 			<n-tooltip trigger="hover" placement="left-start">
 				<template #trigger>
-					<n-button type="primary" @click="toChatTab">
+					<n-button type="primary" @click="toInterViewTab">
 						<template #icon>
 							<n-icon :component="MdChatboxes" />
 						</template>
@@ -31,11 +31,19 @@
 <script setup lang="ts">
 import { IosSend, MdChatboxes } from "@vicons/ionicons4";
 import { useRouter } from "vue-router";
+import { useChatTabStore } from "@/stores/modules/app/chattab";
 
+const chatTabStore = useChatTabStore();
 const router = useRouter();
 function toChatTab() {
 	// TODO
+	chatTabStore.name = "chatApply";
 	router.push("/app/chat");
+}
+function toInterViewTab() {
+	// TODO
+	chatTabStore.name = "interview";
+	router.push("/app/chat/interview");
 }
 </script>
 

@@ -1,4 +1,5 @@
-import request from "@/utils/request";
+import request, { download } from "@/utils/request";
+// import { parseStrEmpty } from "@/utils/ruoyi";
 // 查询用户简历
 export function getUseOnlineResume() {
 	return request({
@@ -28,10 +29,20 @@ export function listUserResumeFile() {
 export function addUserResumeFile(data: any) {
 	return request({
 		url: "/user/resume/file/add",
-		headers: {
-			"Content-Type": "multipart/form-data"
-		},
 		method: "post",
 		data: data
+	});
+}
+
+//简历下载
+export function downloadResumeFile(id?: any, filename: string) {
+	download("/user/resume/file/download", { id: id }, filename);
+}
+
+//删除简历文件
+export function removeResumeFile(id?: any) {
+	return request({
+		url: "/user/resume/file/delete/" + id,
+		method: "delete"
 	});
 }

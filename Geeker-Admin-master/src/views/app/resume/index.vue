@@ -136,17 +136,32 @@
 						<template #footer>
 							<n-grid :x-gap="12" :y-gap="8" :cols="1">
 								<n-grid-item>
-									<n-upload :custom-request="customRequest" @finish="handleFinish">
+									<!-- <n-upload action="#" :custom-request="customRequest" @finish="handleFinish">
 										<n-button block type="primary" round>上传文件</n-button>
-									</n-upload>
+									</n-upload> -->
+									<el-upload
+										v-model:file-list="fileList"
+										:on-preview="handlePreview"
+										:on-remove="handleRemove"
+										:before-remove="beforeRemove"
+										:limit="1"
+										:on-exceed="handleExceed"
+										accept=".doc,.pdf"
+										:http-request="uploadHttpRequest"
+									>
+										<el-button class="w-50" color="#18a058">文件上传</el-button>
+										<template #tip>
+											<div class="el-upload__tip">pdf,doc</div>
+										</template>
+									</el-upload>
 								</n-grid-item>
 							</n-grid>
 						</template>
 						<n-list-item v-for="(item, key) in resumeFileList" :key="key">
 							<n-space>
 								<n-text>{{ item.fileName }}</n-text>
-								<n-button type="primary" size="small">下载</n-button>
-								<n-button type="primary" size="small">删除</n-button>
+								<n-button type="primary" size="small" @click="downloadResumeFile(item.id, item.fileName)">下载</n-button>
+								<n-button type="primary" size="small" @click="deleteFile(item.id)">删除</n-button>
 							</n-space>
 						</n-list-item>
 					</n-list>
@@ -169,12 +184,21 @@
 
 <script setup lang="ts">
 import { reactive, ref, toRefs } from "vue";
-import { getUseOnlineResume, updateUserResume, listUserResumeFile, addUserResumeFile } from "@/api/app/resume";
-import { ElMessage } from "element-plus";
+import {
+	getUseOnlineResume,
+	updateUserResume,
+	listUserResumeFile,
+	addUserResumeFile,
+	downloadResumeFile,
+	removeResumeFile
+} from "@/api/app/resume";
+import { ElMessage, ElMessageBox } from "element-plus";
 import { FormInst } from "naive-ui";
+import type { UploadProps, UploadUserFile } from "element-plus";
 //import UploadResume from "./upload/index.vue";
 const formRef = ref<FormInst | null>(null);
 //const showModal = ref(false);
+const fileList = ref<UploadUserFile[]>([]);
 const resumeFileList = ref<any[]>([]);
 const data = reactive<{
 	form: any;
@@ -219,6 +243,24 @@ const submit = () => {
 
 	console.log("submit");
 };
+const deleteFile = (id: any) => {
+	ElMessageBox.confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+		confirmButtonText: "确定",
+		cancelButtonText: "取消",
+		type: "warning"
+	})
+		.then(() => {
+			removeResumeFile(id).then(res => {
+				console.log(res);
+				ElMessage.success("删除成功");
+				getFileList();
+			});
+		})
+		.catch(() => {
+			ElMessage.info("已取消删除");
+		});
+};
+
 const reset = () => {
 	console.log("reset");
 };
@@ -226,18 +268,50 @@ const reset = () => {
 // 	//showModal.value = true;
 // 	console.log("uploadFile");
 // };
-const customRequest = (file: any) => {
+// const customRequest = (file: any) => {
+// 	let formData = new FormData();
+// 	formData.append("file", file.file);
+// 	addUserResumeFile(formData).then(res => {
+// 		console.log(res);
+// 		ElMessage.success("上传成功");
+// 		getFileList();
+// 	});
+// 	console.log(file);
+// };
+// const handleFinish = (file: any) => {
+// 	console.log(file);
+// };
+const handleRemove: UploadProps["onRemove"] = (file, uploadFiles) => {
+	console.log(file, uploadFiles);
+};
+const handlePreview: UploadProps["onPreview"] = uploadFile => {
+	console.log(uploadFile);
+};
+
+const handleExceed: UploadProps["onExceed"] = (files, uploadFiles) => {
+	ElMessage.warning(
+		`The limit is 3, you selected ${files.length} files this time, add up to ${files.length + uploadFiles.length} totally`
+	);
+};
+
+const beforeRemove: UploadProps["beforeRemove"] = (uploadFile, uploadFiles) => {
+	console.log(uploadFiles);
+	return ElMessageBox.confirm(`Cancel the transfer of ${uploadFile.name} ?`).then(
+		() => true,
+		() => false
+	);
+};
+const uploadHttpRequest = () => {
+	console.log(fileList);
 	let formData = new FormData();
-	formData.append("file", file);
+	formData.append("file", fileList.value[0].raw);
 	addUserResumeFile(formData).then(res => {
 		console.log(res);
 		ElMessage.success("上传成功");
+		fileList.value = [];
 		getFileList();
 	});
-	console.log(file);
-};
-const handleFinish = (file: any) => {
-	console.log(file);
+	console.log(data);
 };
 getResumeOnline();
 getFileList();
