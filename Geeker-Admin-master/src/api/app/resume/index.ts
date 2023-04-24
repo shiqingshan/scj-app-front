@@ -28,6 +28,9 @@ export function listUserResumeFile() {
 //添加用户简历文件
 export function addUserResumeFile(data: any) {
 	return request({
+		headers: {
+			"Content-Type": "multipart/form-data"
+		},
 		url: "/user/resume/file/add",
 		method: "post",
 		data: data

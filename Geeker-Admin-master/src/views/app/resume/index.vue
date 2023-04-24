@@ -304,7 +304,9 @@ const beforeRemove: UploadProps["beforeRemove"] = (uploadFile, uploadFiles) => {
 const uploadHttpRequest = () => {
 	console.log(fileList);
 	let formData = new FormData();
-	formData.append("file", fileList.value[0].raw);
+	console.log(fileList.value[0].raw);
+	formData.append("file", fileList.value[0].raw as any);
+	console.log(formData);
 	addUserResumeFile(formData).then(res => {
 		console.log(res);
 		ElMessage.success("上传成功");
