@@ -7,7 +7,6 @@
 		</el-row>
 		<el-table v-loading="loading" :data="userList">
 			<el-table-column type="index" label="序号" width="50" />
-			<el-table-column prop="id" label="用户编号" width="260"></el-table-column>
 			<el-table-column prop="userName" label="用户名" width="260"></el-table-column>
 			<el-table-column prop="phoneNumber" label="手机号" width="260"></el-table-column>
 			<el-table-column prop="emailAddr" label="邮箱地址" width="260"></el-table-column>

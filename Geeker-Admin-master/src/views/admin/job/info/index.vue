@@ -2,7 +2,6 @@
 	<div class="app-container">
 		<el-table v-loading="loading" :data="companyList">
 			<el-table-column type="index" label="序号" width="50" />
-			<el-table-column prop="id" label="招聘信息编号" width="160"></el-table-column>
 			<el-table-column prop="coName" label="发布企业" width="160"></el-table-column>
 			<el-table-column prop="userName" label="发布用户" width="160"></el-table-column>
 			<el-table-column prop="positionName" label="岗位类别" width="160"></el-table-column>

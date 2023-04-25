@@ -2,7 +2,6 @@
 	<div>
 		<el-table v-loading="loading" :data="companyList">
 			<el-table-column type="index" label="序号" width="50" />
-			<el-table-column prop="id" label="申请编号" width="260"></el-table-column>
 			<el-table-column prop="userInfo.userName" label="申请用户" width="260"></el-table-column>
 			<el-table-column prop="jobInfo.jobName" label="申请职位名称" width="260"></el-table-column>
 			<el-table-column prop="status" label="状态" width="100">

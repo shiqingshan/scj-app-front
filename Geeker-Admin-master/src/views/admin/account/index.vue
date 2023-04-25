@@ -2,7 +2,6 @@
 	<div class="app-container">
 		<el-table v-loading="loading" :data="userList">
 			<el-table-column type="index" label="序号" width="50" />
-			<el-table-column prop="id" label="账号编号" width="260"></el-table-column>
 			<el-table-column prop="userName" label="用户名" width="260"></el-table-column>
 			<el-table-column prop="accountType" label="账号类型" width="260">
 				<template #default="scope">
