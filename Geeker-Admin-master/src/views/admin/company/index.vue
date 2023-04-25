@@ -10,7 +10,7 @@
 			<el-table-column prop="name" label="公司名称" width="260"></el-table-column>
 			<el-table-column prop="status" label="状态" width="100">
 				<template #default="scope">
-					<el-tag>{{ dicts[scope.row.status].label }}</el-tag>
+					<el-tag>{{ selectDictLabel(dicts, scope.row.status) }}</el-tag>
 				</template>
 			</el-table-column>
 			<el-table-column label="创建时间" align="center" prop="createTime" width="200">

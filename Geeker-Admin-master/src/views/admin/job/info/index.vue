@@ -8,7 +8,7 @@
 			<el-table-column prop="jobName" label="职位名称" width="160"></el-table-column>
 			<el-table-column prop="status" label="发布状态" width="160">
 				<template #default="scope">
-					<el-tag>{{ jobStatusDicts[scope.row.jobStatus].label }}</el-tag>
+					<el-tag>{{ selectDictLabel(jobStatusDicts, scope.row.jobStatus) }}</el-tag>
 				</template>
 			</el-table-column>
 			<el-table-column label="创建时间" align="center" prop="createTime" width="160">
