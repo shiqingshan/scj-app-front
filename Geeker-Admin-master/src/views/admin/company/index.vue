@@ -6,6 +6,7 @@
 			</el-col>
 		</el-row>
 		<el-table v-loading="loading" :data="companyList">
+			<el-table-column type="index" label="序号" width="50" />
 			<el-table-column prop="id" label="公司编号" width="260"></el-table-column>
 			<el-table-column prop="name" label="公司名称" width="260"></el-table-column>
 			<el-table-column prop="status" label="状态" width="100">

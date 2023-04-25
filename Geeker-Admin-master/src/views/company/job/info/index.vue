@@ -6,6 +6,7 @@
 			</el-col>
 		</el-row>
 		<el-table v-loading="loading" :data="jobList">
+			<el-table-column type="index" label="序号" width="50" />
 			<el-table-column prop="id" label="招聘信息编号" width="160"></el-table-column>
 			<el-table-column prop="positionName" label="岗位类别" width="160"></el-table-column>
 			<el-table-column prop="jobName" label="职位名称" width="160"></el-table-column>
