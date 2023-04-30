@@ -66,31 +66,37 @@
 				<el-row>
 					<el-col :span="12">
 						<el-form-item label="工作地点" prop="jobAddr">
-							<el-input disabled v-model="form.jobAddr" placeholder="请输入工作地点" />
+							<el-input disabled v-model="form.jobDetail.jobAddr" placeholder="请输入工作地点" />
 						</el-form-item>
 					</el-col>
 					<el-col :span="12">
 						<el-form-item label="教育要求" prop="jobEdu">
-							<el-input disabled v-model="form.jobEdu" placeholder="请输入教育要求" />
+							<el-input disabled v-model="form.jobDetail.jobEdu" placeholder="请输入教育要求" />
 						</el-form-item>
 					</el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="12">
 						<el-form-item label="薪资" prop="jobSalary">
-							<el-input disabled v-model="form.jobSalary" placeholder="请输入薪资" />
+							<el-input disabled v-model="form.jobDetail.jobSalary" placeholder="请输入薪资" />
 						</el-form-item>
 					</el-col>
 					<el-col :span="12">
 						<el-form-item label="资格要求" prop="jobQualification">
-							<el-input disabled v-model="form.jobQualification" placeholder="请输入资格要求" />
+							<el-input disabled v-model="form.jobDetail.jobQualification" placeholder="请输入资格要求" />
 						</el-form-item>
 					</el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="12">
+					<el-col :span="24">
 						<el-form-item label="职位描述" prop="jobDescribe">
-							<el-input disabled v-model="form.jobDescribe" placeholder="请输入职位描述" />
+							<el-input
+								disabled
+								v-model="form.jobDetail.jobDescribe"
+								:autosize="{ minRows: 5, maxRows: 10 }"
+								type="textarea"
+								placeholder="请输入职位描述"
+							/>
 						</el-form-item>
 					</el-col>
 				</el-row>
@@ -170,11 +176,13 @@ function reset() {
 		coId: undefined,
 		coName: undefined,
 		positionId: undefined,
-		jobAddr: undefined,
-		jobEdu: undefined,
-		jobSalary: undefined,
-		jobQualification: undefined,
-		jobDescribe: undefined,
+		jobDetail: {
+			jobAddr: undefined,
+			jobEdu: undefined,
+			jobSalary: undefined,
+			jobQualification: undefined,
+			jobDescribe: undefined
+		},
 		jobStatus: "2"
 	};
 	proxy!.resetForm("jobInfoRef");

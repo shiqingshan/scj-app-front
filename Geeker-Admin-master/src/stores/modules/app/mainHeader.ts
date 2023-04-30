@@ -7,10 +7,12 @@ export const useMainHeader = defineStore("mainHeader", {
 		jobHeader: {
 			jobStatus: "",
 			jobName: "",
-			jobAddr: "",
-			jobQualification: "",
-			jobEdu: "",
-			jobSalary: "",
+			jobDetail: {
+				jobAddr: "",
+				jobQualification: "",
+				jobEdu: "",
+				jobSalary: ""
+			},
 			id: "",
 			openSelectResume: false,
 			resumeList: [] as any[]

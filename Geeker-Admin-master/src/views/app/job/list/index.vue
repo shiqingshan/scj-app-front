@@ -1,18 +1,18 @@
 <template>
 	<div>
-		<template v-for="(item, key) in jobList" :key="key">
-			<el-row>
-				<el-col>
-					<el-card shadow="hover" class="card" @click="toDetail(item.id)">
+		<n-grid x-gap="12" :y-gap="8" :cols="3">
+			<template v-for="(item, index) in jobList" :key="index">
+				<n-gi span="3">
+					<n-card hoverable @click="toDetail(item.id)">
 						<template #header>
 							<div flex content-center items-center justify-between>
 								<div>
 									<span text-2xl>{{ item.jobName }}</span>
 									<div>
 										<el-space>
-											<span color="red">{{ item.jobSalary }}</span>
-											<span>{{ item.jobQualification }}</span>
-											<span>{{ item.jobEdu }}</span>
+											<span color="red">{{ item.jobDetail.jobSalary }}</span>
+											<span>{{ item.jobDetail.jobQualification }}</span>
+											<span>{{ item.jobDetail.jobEdu }}</span>
 										</el-space>
 									</div>
 									<el-button class="button" text>立即沟通</el-button>
@@ -22,14 +22,20 @@
 								</div>
 							</div>
 						</template>
-						<div flex content-center items-center justify-between>
-							<div>{{ item.positionName }}</div>
-							<div>五险一金</div>
-						</div>
-					</el-card>
-				</el-col>
-			</el-row>
-		</template>
+					</n-card>
+				</n-gi>
+			</template>
+			<n-gi :offset="1">
+				<n-pagination
+					v-model:page="queryParams.pageNum"
+					v-model:page-size="queryParams.pageSize"
+					:item-count="total"
+					:page-sizes="[10, 20, 30, 40]"
+					:on-update:page="updatePage"
+					:on-update:page-size="updateSizePage"
+				/>
+			</n-gi>
+		</n-grid>
 	</div>
 </template>
 
@@ -38,7 +44,7 @@ import { useRouter } from "vue-router";
 import { listJobInfo } from "@/api/admin/job/info";
 import { ref, reactive, toRefs } from "vue";
 const router = useRouter();
-
+const total = ref(0);
 const jobList = ref<any[]>([]);
 
 // const jobList = [
@@ -75,6 +81,15 @@ function getList() {
 const toDetail = (id: any) => {
 	router.push("/app/jobdetail/" + id);
 };
+function updatePage(page: number) {
+	queryParams.value.pageNum = page;
+	console.log("updatePage", queryParams);
+	getList();
+}
+function updateSizePage(pageSize: number) {
+	queryParams.value.pageSize = pageSize;
+	getList();
+}
 getList();
 </script>
 

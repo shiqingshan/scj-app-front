@@ -24,7 +24,8 @@
 		</div>
 		<el-aside :class="{ 'not-aside': !subMenu.length }" :style="{ width: isCollapse ? '65px' : '210px' }">
 			<div class="logo flx-center">
-				<span v-show="subMenu.length">{{ isCollapse ? "G" : "校园招聘管理" }}</span>
+				<span v-show="subMenu.length" v-if="globalStore.accountType == '2'">{{ isCollapse ? "校" : "校园招聘后台管理" }}</span>
+				<span v-show="subMenu.length" v-if="globalStore.accountType == '1'">{{ isCollapse ? "校" : "校园招聘企业端" }}</span>
 			</div>
 			<el-scrollbar>
 				<el-menu

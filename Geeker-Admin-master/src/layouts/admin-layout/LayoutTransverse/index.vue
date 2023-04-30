@@ -4,7 +4,8 @@
 		<el-header>
 			<div class="logo flx-center">
 				<img src="@/assets/images/logo.svg" alt="logo" />
-				<span>校园招聘后台管理</span>
+				<span v-if="globalStore.accountType == '2'">校园招聘后台管理</span>
+				<span v-if="globalStore.accountType == '1'">校园招聘企业端</span>
 			</div>
 			<el-menu
 				mode="horizontal"
@@ -49,7 +50,9 @@ import { useRoute, useRouter } from "vue-router";
 import Main from "@/layouts/admin-layout/components/Main/index.vue";
 import ToolBarRight from "@/layouts/admin-layout/components/Header/ToolBarRight.vue";
 import SubMenu from "@/layouts/admin-layout/components/Menu/SubMenu.vue";
+import { GlobalStore } from "@/stores";
 
+const globalStore = GlobalStore();
 const route = useRoute();
 const router = useRouter();
 const authStore = AuthStore();

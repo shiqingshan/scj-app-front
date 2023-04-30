@@ -5,7 +5,8 @@
 			<div class="header-lf">
 				<div class="logo flx-center">
 					<img src="@/assets/images/logo.svg" alt="logo" />
-					<span>校园招聘管理</span>
+					<span v-if="globalStore.accountType == '2'">校园招聘管理</span>
+					<span v-if="globalStore.accountType == '1'">校园招聘企业端</span>
 				</div>
 				<ToolBarLeft />
 			</div>

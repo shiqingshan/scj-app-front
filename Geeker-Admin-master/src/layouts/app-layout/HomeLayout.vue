@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-container>
+		<el-container style="position: absolute; width: 100%; height: 100%; overflow: hidden; background-color: #f1f1f1">
 			<LayoutHeader />
 			<el-main class="text-center" style="padding: 0%">
 				<MainHeader />

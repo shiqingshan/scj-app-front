@@ -5,7 +5,8 @@
 			<div class="menu" :style="{ width: isCollapse ? '65px' : '210px' }">
 				<div class="logo flx-center">
 					<img src="@/assets/images/logo.svg" alt="logo" />
-					<span v-show="!isCollapse">校园招聘后台管理</span>
+					<span v-show="!isCollapse" v-if="globalStore.accountType == '2'">校园招聘后台管理</span>
+					<span v-if="globalStore.accountType == '1'">校园招聘企业端</span>
 				</div>
 				<el-scrollbar>
 					<el-menu

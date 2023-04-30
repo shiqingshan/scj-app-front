@@ -1,9 +1,11 @@
 <template>
-	<div>
+	<div m-t-3>
 		<el-row>
-			<el-col :span="4">
-				<h2>职位描述</h2>
-				<span>{{ jobDescribe }}</span>
+			<el-col :span="24">
+				<n-card>
+					<h2 flex>职位描述</h2>
+					<span style="text-align: left; white-space: pre-line" flex>{{ jobDescribe }}</span>
+				</n-card>
 			</el-col>
 		</el-row>
 	</div>
@@ -23,7 +25,7 @@ const id = router.currentRoute.value.params.id;
 console.log("jobId", id);
 getJobInfo(id).then((res: any) => {
 	mainHeader.setJobHeader(res.data);
-	jobDescribe.value = res.data.jobDescribe;
+	jobDescribe.value = res.data.jobDetail.jobDescribe;
 });
 onBeforeUnmount(() => {
 	console.log("likai");

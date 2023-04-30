@@ -19,8 +19,6 @@
 		<el-menu-item index="joblist" route="/app/joblist">职位</el-menu-item>
 		<el-menu-item index="companylist" route="/app/companylist">公司</el-menu-item>
 		<div class="flex-grow" />
-		<el-menu-item index="5">我要找工作</el-menu-item>
-		<el-menu-item index="6">我要招聘</el-menu-item>
 
 		<el-menu-item index="resume" route="/app/resume">简历</el-menu-item>
 		<li mt-4 color-white hover-cursor-pointer hover-color-emerald text-4 @click="uploadResumeFile">上传</li>

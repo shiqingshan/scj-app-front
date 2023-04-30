@@ -11,7 +11,7 @@
 							{{ mainHeader.jobHeader.jobName }}
 						</div>
 						<div color-red>
-							{{ mainHeader.jobHeader.jobSalary }}
+							{{ mainHeader.jobHeader.jobDetail.jobSalary }}
 						</div>
 					</el-space>
 				</el-col>
@@ -19,9 +19,9 @@
 			<el-row>
 				<el-col :span="24" flex>
 					<el-space>
-						<span>{{ mainHeader.jobHeader.jobAddr }}</span>
-						<span>{{ mainHeader.jobHeader.jobQualification }}</span>
-						<span>{{ mainHeader.jobHeader.jobEdu }}</span>
+						<span>{{ mainHeader.jobHeader.jobDetail.jobAddr }}</span>
+						<span>{{ mainHeader.jobHeader.jobDetail.jobQualification }}</span>
+						<span>{{ mainHeader.jobHeader.jobDetail.jobEdu }}</span>
 					</el-space>
 				</el-col>
 			</el-row>

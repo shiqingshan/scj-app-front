@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h3 class="content-center">热招职位</h3>
+		<h1 class="content-center">热招职位</h1>
 		<n-grid x-gap="12" :y-gap="8" :cols="3">
 			<template v-for="(item, index) in hotJobList" :key="index">
 				<n-gi>
@@ -12,14 +12,14 @@
 						</template>
 						<template #header-extra>
 							<div>
-								<span color="red">{{ item.jobSalary }}</span>
+								<span color="red">{{ item.jobDetail.jobSalary }}</span>
 							</div>
 						</template>
 						<div>
 							<n-space>
-								<span>{{ item.jobSalary }}</span>
-								<span>{{ item.jobEdu }}</span>
-								<span>{{ item.jobQualification }}</span>
+								<span>{{ item.jobDetail.jobSalary }}</span>
+								<span>{{ item.jobDetail.jobEdu }}</span>
+								<span>{{ item.jobDetail.jobQualification }}</span>
 							</n-space>
 						</div>
 						<template #footer>
@@ -31,7 +31,7 @@
 				</n-gi>
 			</template>
 		</n-grid>
-		<h3 class="content-center">热门企业</h3>
+		<h1 class="content-center">热门企业</h1>
 
 		<n-grid x-gap="12" :y-gap="8" :cols="3">
 			<template v-for="(item, index) in hotCompanyList" :key="index">
